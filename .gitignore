@@ -1,0 +1,5 @@
+cache/*
+arquivos/*
+vendor/*
+nbproject/*
+config.php

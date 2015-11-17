@@ -1,0 +1,17 @@
+{
+    "name": "Tirinhas Diárias",
+    "description": "Breve descrição do que a aplicação se propoe a fazer",
+    "authors": [
+        {
+            "name": "Everton",
+            "email": "coffeverton@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.8"
+        ,"phpmailer/phpmailer": "~5.2"
+    }
+    ,"autoload": {
+       "psr-0": {"Tiras": "src/"}
+    }
+}
