@@ -9,10 +9,16 @@ abstract class Tiras {
     public $save_folder;
     public $img_local;
     public $url_base;
+    public $db;
     
     public function __construct() {
+        $this->initDb();
         $this->setName();
         $this->generateData();
+        if(!$this->validateData())
+        {
+            return;
+        }
         $this->generateUrl();
         $this->generateUrlBase();
         $this->save_folder = "arquivos/{$this->name}/{$this->data}";
@@ -49,7 +55,53 @@ abstract class Tiras {
         file_put_contents($this->img_local, file_get_contents($this->img));
     }
     
+    public function exists()
+    {
+        $query = "SELECT COUNT(*) AS existentes FROM Tiras WHERE data = '{$this->data}' AND origem = '{$this->name}'";
+        $stm = $this->db->query($query);
+        $result = $stm->fetchAll();
+        $itens = $result[0];
+        return $itens->existentes != 0;
+    }
+    
+    public function initDb()
+    {
+        @mkdir('db', 0777);
+        $this->db = new \PDO(
+                'sqlite:db/tiras.db'
+                ,''
+                ,''
+                ,array(
+                    \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_OBJ
+                )
+        );
+        $query = "CREATE TABLE IF NOT EXISTS Tiras (id INTEGER PRIMARY KEY AUTOINCREMENT, data CHAR(10), origem VARCHAR(255))";
+        try{
+            $this->db->exec($query);
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+            die;
+        }
+    }
+    
+    public function updateDb()
+    {
+        $query = "INSERT INTO Tiras (data, origem) VALUES ('{$this->data}', '{$this->name}');";
+        $this->db->exec($query);
+    }
+    
+    public function validateData()
+    {
+        if($this->exists() === true)
+        {
+            return false;
+        } else {
+            $this->updateDb();
+        }
+    }
+    
     public function sendMail(){
+        return ;
         require_once 'config.php';
 //        require 'vendor/autoload.php';
         
