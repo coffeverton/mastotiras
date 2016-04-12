@@ -97,11 +97,11 @@ abstract class Tiras {
             return false;
         } else {
             $this->updateDb();
+            return true;
         }
     }
     
     public function sendMail(){
-        return ;
         require_once 'config.php';
 //        require 'vendor/autoload.php';
         
