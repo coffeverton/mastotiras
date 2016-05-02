@@ -17,7 +17,7 @@ class Captionthis extends Tiras{
         $inicio = new \DateTime('2016-04-29');
         $hoje = new \DateTime;
         $diff = $inicio->diff($hoje);
-        $this->data = (12330 - $diff->days);
+        $this->data = (12330 + $diff->days);
     }
     
     public function generateUrl(){
