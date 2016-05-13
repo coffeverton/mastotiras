@@ -61,7 +61,7 @@ abstract class Tiras {
         {
             return false;
         } else {
-            file_put_contents($this->img_local, file_get_contents($this->img));
+            file_put_contents($this->img_local, $arquivo);
             return true;
         }
     }
