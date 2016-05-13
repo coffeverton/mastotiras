@@ -24,7 +24,11 @@ abstract class Tiras {
         $this->save_folder = "arquivos/{$this->name}/{$this->data}";
         $html = $this->get();
         $this->img = $this->process($html);
-        $this->saveImg();
+        
+        if(!$this->saveImg())
+        {
+            return;
+        }
         $this->sendMail();
     }
     
@@ -52,7 +56,14 @@ abstract class Tiras {
     public function saveImg(){
         @mkdir($this->save_folder, 0777, true);
         $this->img_local = $this->save_folder.'/'.uniqid(); 
-        file_put_contents($this->img_local, file_get_contents($this->img));
+        $arquivo = file_get_contents($this->img);
+        if(!$arquivo)
+        {
+            return false;
+        } else {
+            file_put_contents($this->img_local, file_get_contents($this->img));
+            return true;
+        }
     }
     
     public function exists()
