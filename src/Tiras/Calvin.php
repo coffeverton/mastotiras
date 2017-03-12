@@ -20,6 +20,7 @@ class Calvin extends Tiras{
         preg_match("/http:.*\"/", $tmp, $src);
         $img = $src[0];
         $img = str_replace('"', '', $img);
+        echo $img."\r\n";
         return $img;
     }
 }
