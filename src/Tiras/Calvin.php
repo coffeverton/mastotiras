@@ -15,12 +15,11 @@ class Calvin extends Tiras{
     }
     
     public function process($html){
-        preg_match_all('/og:image/', $html, $arr);
+        preg_match_all('/og:image.*/', $html, $arr);
         $tmp = $arr[0][0];
         preg_match("/http:.*\"/", $tmp, $src);
         $img = $src[0];
         $img = str_replace('"', '', $img);
-        echo $img."\r\n";
         return $img;
     }
 }
