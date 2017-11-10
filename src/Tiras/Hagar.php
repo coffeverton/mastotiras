@@ -8,7 +8,7 @@ namespace Tiras;
  * @author everton
  */
 class Hagar extends Tiras{
-	public $date_format = 'F-d-Y';
+	public $date_format = 'F-j-Y';
     public function setName(){
         $this->name = 'hagar';
     }
