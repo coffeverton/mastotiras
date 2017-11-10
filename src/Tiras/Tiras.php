@@ -7,10 +7,16 @@ abstract class Tiras {
     public $url;
     public $img;
     public $url_base;
+    public $date_format;
     
-    public function __construct() {
+    public function __construct($data = null) {
         $this->setName();
-        $this->generateData();
+        if($data === null)
+        {
+        	$this->generateData();
+        } else {
+        	$this->parseData($data);
+        }
         $this->generateUrl();
         $html = $this->get();
         $this->img = $this->process($html);
@@ -29,10 +35,16 @@ abstract class Tiras {
         $html = file_get_contents($this->url);
         return $html;
     }
+    
+    public function parseData($str_data){
+    	$data = new \DateTime($str_data);
+    	$this->data = $data->format($this->date_format);
+    }
         
     public function salvar()
     {
         $comando = "php /home/everton/vhosts/site/bin/console tiras:importar {$this->name} {$this->data} {$this->img}";
+        echo $comando."\r\n";
         shell_exec($comando);
     }
 }

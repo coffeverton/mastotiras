@@ -15,7 +15,7 @@ class Captionthis extends Tiras{
     
     public function generateData(){
         $inicio = new \DateTime('2016-12-23');
-        $hoje = new \DateTime;
+        $hoje = new \DateTime();
         $diff = $inicio->diff($hoje);
         $this->data = (12330 + $diff->days);
     }

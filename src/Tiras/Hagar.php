@@ -8,13 +8,13 @@ namespace Tiras;
  * @author everton
  */
 class Hagar extends Tiras{
-    
+	public $date_format = 'F-d-Y';
     public function setName(){
         $this->name = 'hagar';
     }
     
     public function generateData(){
-        $this->data = date('F-d-Y');
+    	$this->data = date($this->date_format);
     }
     
     public function generateUrl(){

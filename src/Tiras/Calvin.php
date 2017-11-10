@@ -1,13 +1,13 @@
 <?php
 namespace Tiras;
 class Calvin extends Tiras{
-    
+	public $date_format = 'Y/m/d';
     public function setName(){
         $this->name = 'calvin';
     }
     
     public function generateData(){
-        $this->data = date('Y/m/d');
+    	$this->data = date($this->date_format);
     }
     
     public function generateUrl(){
