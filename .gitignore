@@ -4,3 +4,5 @@ arquivos/*
 vendor/*
 nbproject/*
 config.php
+.idea/*
+composer.phar
