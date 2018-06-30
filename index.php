@@ -8,3 +8,8 @@ $captionthis    = new \Tiras\Captionthis();
 
 $garfield         = new \Tiras\Garfield();
 $peanuts         = new \Tiras\Peanuts();
+
+/*novos*/
+$basicinstructions = new \Tiras\Basicinstructions();
+$darksideofthehorse= new \Tiras\Darksideofthehorse();
+$thatispriceless   = new \Tiras\Thatispriceless();
