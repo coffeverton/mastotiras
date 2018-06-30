@@ -17,7 +17,7 @@ class Peanuts extends Tiras{
     public function process($html){
         preg_match_all('/og:image.*/', $html, $arr);
         $tmp = $arr[0][0];
-        preg_match("/http:.*\"/", $tmp, $src);
+        preg_match("/https:.*\"/", $tmp, $src);
         $img = $src[0];
         $img = str_replace('"', '', $img);
         return $img;
