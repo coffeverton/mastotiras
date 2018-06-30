@@ -15,10 +15,11 @@ class Thatispriceless extends Tiras{
     }
     
     public function process($html){
-        preg_match_all('/og:image.*/', $html, $arr);
+        preg_match_all('/gc-card__image gc-card__image--cropped-strip lazyload__padder lazyload__padder--card.*/', $html, $arr);
         $tmp = $arr[0][0];
-        preg_match("/https:.*\"/", $tmp, $src);
+        preg_match("/src=\"https:.*\"/", $tmp, $src);
         $img = $src[0];
+        $img = str_replace('src="', '', $img);
         $img = str_replace('"', '', $img);
         return $img;
     }
