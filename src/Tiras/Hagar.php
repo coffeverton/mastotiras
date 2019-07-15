@@ -8,7 +8,7 @@ namespace Tiras;
  * @author everton
  */
 class Hagar extends Tiras{
-	public $date_format = 'F-j-Y';
+	public $date_format = 'Y-m-d';
     public function setName(){
         $this->name = 'hagar';
     }
@@ -18,14 +18,15 @@ class Hagar extends Tiras{
     }
     
     public function generateUrl(){
-        $this->url = 'http://hagarthehorrible.com/comics/'.$this->data;
+        $this->url = 'https://www.comicskingdom.com/hagar-the-horrible/'.$this->data;
     }
     
     public function process($html){
-        preg_match_all('/.*screenResUri".*/', $html, $arr);
+        preg_match_all('/og:image.*/', $html, $arr);
         $tmp = $arr[0][0];
-        preg_match("/screenResUri\" value=\"[a-zA-Z0-9:\/\.?=]{0,}/", $tmp, $output_array);
-        $img = str_replace('screenResUri" value="', '', $output_array[0]);        
+        preg_match("/https:.*\"/", $tmp, $src);
+        $img = $src[0];
+        $img = str_replace('"', '', $img);
         return $img;
     }
 }

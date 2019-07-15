@@ -11,7 +11,7 @@ class Dilbert extends Tiras{
     }
     
     public function generateUrl(){
-        $this->url = 'http://dilbert.com/strip/'.$this->data;
+        $this->url = 'https://dilbert.com/strip/'.$this->data;
     }
     
     public function process($html){
@@ -21,6 +21,7 @@ class Dilbert extends Tiras{
         $img = str_replace('src=','', $output_array[0]);
         $img = str_replace('"','', $img);
         $img = str_replace("'",'', $img);
+        $img = 'https'.$img;
         
         return $img;
     }
