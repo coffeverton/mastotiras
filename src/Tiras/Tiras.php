@@ -13,9 +13,9 @@ abstract class Tiras {
         $this->setName();
         if($data === null)
         {
-        	$this->generateData();
+            $this->generateData();
         } else {
-        	$this->parseData($data);
+            $this->parseData($data);
         }
         $this->generateUrl();
         $html = $this->get();
@@ -43,7 +43,10 @@ abstract class Tiras {
         
     public function salvar()
     {
-        $comando = "php /home/everton/vhosts/site/bin/console tiras:importar {$this->name} {$this->data} {$this->img}";
+        if(strlen($this->img) < 3) {
+            return false;
+        }
+        $comando = COMMAND_BASE." '{$this->name} {$this->data} - {$this->url}' '{$this->img}' 'comics_{$this->name}' ";
         echo $comando."\r\n";
         shell_exec($comando);
     }

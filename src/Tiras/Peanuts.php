@@ -1,7 +1,7 @@
 <?php
 namespace Tiras;
 class Peanuts extends Tiras{
-	public $date_format = 'Y/m/d';
+    public $date_format = 'Y/m/d';
     public function setName(){
         $this->name = 'peanuts';
     }
@@ -11,7 +11,7 @@ class Peanuts extends Tiras{
     }
     
     public function generateUrl(){
-        $this->url = 'http://www.gocomics.com/peanuts/'.$this->data;
+        $this->url = 'https://www.gocomics.com/peanuts/'.$this->data;
     }
     
     public function process($html){

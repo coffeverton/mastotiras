@@ -1,14 +1,17 @@
 {
-    "name": "Tirinhas Diárias",
-    "description": "Breve descrição do que a aplicação se propoe a fazer",
-    "authors": [
-        {
-            "name": "Everton",
-            "email": "coffeverton@gmail.com"
-        }
-    ],
+    "type": "project",
+    "license": "open",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "require": {
-        "php": ">=5.2.8"
+        "php": ">=7.3.0"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
     }
     ,"autoload": {
        "psr-0": {"Tiras": "src/"}

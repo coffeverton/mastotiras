@@ -1,7 +1,7 @@
 <?php
 namespace Tiras;
 class Garfield extends Tiras{
-	public $date_format = 'Y-m-d';
+    public $date_format = 'Y/m/d';
     public function setName(){
         $this->name = 'garfield';
     }
@@ -11,16 +11,15 @@ class Garfield extends Tiras{
     }
     
     public function generateUrl(){
-        $this->url = 'https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/'.date('Y/').$this->data.'.gif';
-    }
-
-    public function get(){
-        return $this->url;
+        $this->url = 'https://www.gocomics.com/garfield/'.$this->data;
     }
 
     public function process($html){
-        return $html;
+        preg_match_all('/og:image.*/', $html, $arr);
+        $tmp = $arr[0][0];
+        preg_match("/https:.*\"/", $tmp, $src);
+        $img = $src[0];
+        $img = str_replace('"', '', $img);
+        return $img;
     }
 }
-
-//https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/2018/2018-01-06.gif

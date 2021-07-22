@@ -21,7 +21,6 @@ class Dilbert extends Tiras{
         $img = str_replace('src=','', $output_array[0]);
         $img = str_replace('"','', $img);
         $img = str_replace("'",'', $img);
-        $img = 'https:'.$img;
         
         return $img;
     }
